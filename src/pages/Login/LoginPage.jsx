@@ -1,8 +1,19 @@
 import "./css/style.css";
 import "./fonts/material-design-iconic-font/css/material-design-iconic-font.min.css";
 import epdeorFrontis from "../../assets/img/epdeor_frontis.png";
+import { useContext, useState } from "react";
+import { LoginContext } from "../../contexts/login.context";
 
 function LoginPage() {
+    const { iniciarSesion, error, loading } = useContext(LoginContext);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        iniciarSesion(username, password);
+    };
+
     return (
         <div className="wrapper">
             <div
@@ -16,7 +27,7 @@ function LoginPage() {
                     <img src={epdeorFrontis} alt="EPDEOR" />
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h3>Iniciar Sesión</h3>
 
                     <p style={{ color: "red", display: "none" }}>
@@ -28,7 +39,9 @@ function LoginPage() {
                             type="text"
                             name="username"
                             className="form-control"
+                            value={username}
                             placeholder="Nombre de usuario"
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                         />
                         <i className="zmdi zmdi-account"></i>
@@ -38,19 +51,28 @@ function LoginPage() {
                         <input
                             type="password"
                             name="password"
+                            value={password}
                             className="form-control"
                             placeholder="Contraseña"
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                         <i className="zmdi zmdi-lock"></i>
                     </div>
 
                     <button
-                        type="submit"
+                        type="submit" disabled={loading}
                         style={{ backgroundColor: "#CC0000", borderRadius: "10px" }}
                     >
-                        Iniciar Sesión <i className="zmdi zmdi-arrow-right"></i>
+                        {loading ? (
+                        "Iniciando..."
+                        ) : (
+                        <>
+                            Iniciar Sesión <i className="zmdi zmdi-arrow-right"></i>
+                        </>
+                        )}
                     </button>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                 </form>
             </div>
         </div>
