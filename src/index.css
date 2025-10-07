@@ -1,0 +1,15 @@
+::root {
+    --color-epdeor-a: #0e2d56;
+    --color-epdeor-b: #385fa0;
+    --color-epdeor-c: #ff7c7c;
+    --color-epdeor-d: #dce091;
+    --color-epdeor-e: #cc1e1e;
+
+    --color-primario: #680202;
+    --color-secundario-a: #ffcc00;
+    --color-secundario-b: #333399;
+    --color-secundario-c: #CC0000;
+
+    --color-fuente-a: #000000;
+    --color-fuente-b: #cccccc;
+}
