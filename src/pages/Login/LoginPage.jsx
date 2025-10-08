@@ -1,8 +1,9 @@
 import "./css/style.css";
 import "./fonts/material-design-iconic-font/css/material-design-iconic-font.min.css";
 import epdeorFrontis from "../../assets/img/epdeor_frontis.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../contexts/login.context";
+import toast, { Toaster } from "react-hot-toast";
 
 function LoginPage() {
     const { iniciarSesion, error, loading } = useContext(LoginContext);
@@ -13,6 +14,11 @@ function LoginPage() {
         e.preventDefault();
         iniciarSesion(username, password);
     };
+
+    // 🔔 Mostrar toast cuando haya error
+    useEffect(() => {
+        if (error) toast.error(error);
+    }, [error]);
 
     return (
         <div className="wrapper">
@@ -29,10 +35,6 @@ function LoginPage() {
 
                 <form onSubmit={handleSubmit}>
                     <h3>Iniciar Sesión</h3>
-
-                    <p style={{ color: "red", display: "none" }}>
-                        Credenciales no válidas. Inténtalo de nuevo.
-                    </p>
 
                     <div className="form-wrapper">
                         <input
@@ -61,18 +63,21 @@ function LoginPage() {
                     </div>
 
                     <button
-                        type="submit" disabled={loading}
+                        type="submit"
+                        disabled={loading}
                         style={{ backgroundColor: "#CC0000", borderRadius: "10px" }}
                     >
                         {loading ? (
-                        "Iniciando..."
+                            "Iniciando..."
                         ) : (
-                        <>
-                            Iniciar Sesión <i className="zmdi zmdi-arrow-right"></i>
-                        </>
+                            <>
+                                Iniciar Sesión <i className="zmdi zmdi-arrow-right"></i>
+                            </>
                         )}
                     </button>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+
+                    {/* Coloca el Toaster una sola vez */}
+                    <Toaster position="top-center" reverseOrder={false} />
                 </form>
             </div>
         </div>

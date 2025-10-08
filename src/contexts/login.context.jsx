@@ -22,7 +22,7 @@ function LoginProviderWrapper({ children }) {
             setRefreshToken(storedRefresh);
         }
 
-        if (storedUser) {
+        if (storedUser && window.location.pathname === "/iniciar-sesion") {
             navigate("/");
         }
     }, [])
@@ -57,7 +57,6 @@ function LoginProviderWrapper({ children }) {
             setError(null);
             navigate("/");
         } catch (e) {
-            console.error("Error al iniciar sesión:", e);
             setError(e.message);
         } finally {
             setLoading(false);
