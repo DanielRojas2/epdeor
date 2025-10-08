@@ -1,6 +1,13 @@
+import NavbarComponent from "../components/Navbar/NavbarComponent";
+
 function MaterialPage() {
   return (
-    <div>Material</div>
+    <>
+            <NavbarComponent />
+            <section>
+                Material
+            </section>
+        </>
   )
 }
 

@@ -1,6 +1,14 @@
+import NavbarComponent from "../components/Navbar/NavbarComponent";
+import SideBar from "../components/SideBar/SideBar";
+
 function ArchivosPage() {
     return (
-        <div>Archivos</div>
+        <>
+            <NavbarComponent />
+            <section>
+                <SideBar></SideBar>
+            </section>
+        </>
     )
 }
 

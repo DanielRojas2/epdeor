@@ -1,6 +1,13 @@
+import NavbarComponent from "../components/Navbar/NavbarComponent";
+
 function UsuariosPage() {
   return (
-    <div>Usuarios</div>
+      <>
+          <NavbarComponent />
+          <section>
+              Usuarios
+          </section>
+      </>
   )
 }
 
