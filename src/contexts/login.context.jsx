@@ -71,6 +71,7 @@ function LoginProviderWrapper({ children }) {
         localStorage.removeItem("user");
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
+        navigate("/iniciar-sesion");
     };
 
     return (

@@ -1,8 +1,16 @@
+import { useContext, useState } from "react"
+import NavbarComponent from "../components/Navbar/NavbarComponent";
+
 function HomePage() {
+    const [rol, setRol] = useState(null);
+
     return (
-        <section>
-            Inicio
-        </section>
+        <>
+            <NavbarComponent />
+            <section>
+                Inicio
+            </section>
+        </>
     )
 }
 

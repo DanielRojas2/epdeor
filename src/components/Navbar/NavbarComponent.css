@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #680202;
+}
+
+.logo img {
+    height: 45px;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.links a {
+    text-decoration: none;
+    color: #e9e4e4;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.links a:hover {
+    color: #ffcc00;
+}
+
+.sesion {
+    background-color: #CC0000;
+    color: #cccccc;
+    border-radius: 25px;
+    height: 30px;
+    width: 110px;
+    align-items: center;
+}
+
+.sesion:hover {
+    background-color: #837575;
+    color: #272626;
+}
