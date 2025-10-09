@@ -1,6 +1,8 @@
+// App.jsx
 import { Route, Routes } from "react-router-dom";
+import MenuNavigation from "./components/Navigation/MenuNavigation";
 import HomePage from "./pages/HomePage";
-import ArchivosPage from "./pages/ArchivosPage";
+import ListarTomosPage from "./pages/ArchivosPage/ListarTomosPage";
 import MaterialPage from "./pages/MaterialPage";
 import UsuariosPage from "./pages/UsuariosPage";
 import LoginPage from "./pages/Login/LoginPage";
@@ -10,38 +12,19 @@ import "./App.css";
 function App() {
     return (
         <Routes>
+            {/* Layout protegido con menú */}
             <Route
-                path="/"
                 element={
                     <ProtectedRoute>
-                        <HomePage />
+                        <MenuNavigation />
                     </ProtectedRoute>
                 }
-            />
-            <Route
-                path="/archivos"
-                element={
-                    <ProtectedRoute>
-                        <ArchivosPage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/material"
-                element={
-                    <ProtectedRoute>
-                        <MaterialPage />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/usuarios"
-                element={
-                    <ProtectedRoute>
-                        <UsuariosPage />
-                    </ProtectedRoute>
-                }
-            />
+            >
+                <Route index element={<HomePage />} />
+                <Route path="archivos" element={<ListarTomosPage />} />
+                <Route path="material" element={<MaterialPage />} />
+                <Route path="usuarios" element={<UsuariosPage />} />
+            </Route>
 
             {/* Página pública */}
             <Route path="/iniciar-sesion" element={<LoginPage />} />

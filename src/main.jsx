@@ -4,14 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { LoginProviderWrapper } from './contexts/login.context.jsx'
+import { ArchivosProviderWrapper } from './contexts/archivos.context.jsx'
 
 createRoot(document.getElementById('root')).render(
     
     <BrowserRouter>
         <LoginProviderWrapper>
-            <StrictMode>
-                <App />
-            </StrictMode>
+            <ArchivosProviderWrapper>
+                <StrictMode>
+                    <App />
+                </StrictMode>
+            </ArchivosProviderWrapper>
         </LoginProviderWrapper>
     </BrowserRouter>
 )

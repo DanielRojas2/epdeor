@@ -1,17 +1,13 @@
-import { useContext, useState } from "react"
-import NavbarComponent from "../components/Navbar/NavbarComponent";
+import MenuNavigation from "../components/Navigation/MenuNavigation"
 
+// pages/HomePage.jsx
 function HomePage() {
-    const [rol, setRol] = useState(null);
-
     return (
-        <>
-            <NavbarComponent />
-            <section>
-                Inicio
-            </section>
-        </>
-    )
+        <div>
+            <h2>Bienvenido a la página de inicio</h2>
+            <p>Contenido principal de Home</p>
+        </div>
+    );
 }
 
-export default HomePage
+export default HomePage;
