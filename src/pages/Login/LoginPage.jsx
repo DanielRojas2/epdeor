@@ -15,7 +15,6 @@ function LoginPage() {
         iniciarSesion(username, password);
     };
 
-    // 🔔 Mostrar toast cuando haya error
     useEffect(() => {
         if (error) toast.error(error);
     }, [error]);
