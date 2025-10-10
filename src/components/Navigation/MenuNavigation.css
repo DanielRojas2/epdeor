@@ -33,11 +33,6 @@ main {
     height: 100%;
 }
 
-main > div {
-    margin: auto;
-    max-width: 600px;
-}
-
 main h2 span {
     color: #bf7497;
 }
@@ -60,11 +55,12 @@ main small {
     pointer-events: none;
 }
 #nav-container .bg {
-    position: absolute;
-    top: 70px;
+    z-index: 1999;
+    position: fixed;
+    top: 70px; /* deja visible el header */
     left: 0;
     width: 100%;
-    height: calc(100% - 70px);
+    height: calc(100% - 70px); /* evita cubrir el header */
     visibility: hidden;
     opacity: 0;
     transition: 0.3s;
@@ -177,17 +173,6 @@ main small {
     transform: none;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    height: 100%;
-}
-
 a,
 a:visited,
 a:focus,
@@ -218,4 +203,24 @@ img {
     vertical-align: middle;
     height: auto;
     width: 100%;
+}
+
+#nav-container {
+    z-index: 2000; /* por encima del contenido */
+}
+
+/* La capa negra de fondo debe cubrir el contenido */
+#nav-container .bg {
+    z-index: 1999;
+    position: fixed; /* antes era absolute, esto evita que quede dentro del flujo */
+}
+
+/* El contenido de la app queda debajo del overlay */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+#nav-content {
+    z-index: 2001; /* por encima del overlay oscuro */
 }
