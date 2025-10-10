@@ -35,3 +35,7 @@ body {
     font-family: 'GothamLight';
     min-height: 100vh;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+}
