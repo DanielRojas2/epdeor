@@ -5,15 +5,18 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { LoginProviderWrapper } from './contexts/login.context.jsx'
 import { ArchivosProviderWrapper } from './contexts/archivos.context.jsx'
+import { UsuariosProviderWrapper } from './contexts/usuarios.context.jsx'
 
 createRoot(document.getElementById('root')).render(
     
     <BrowserRouter>
         <LoginProviderWrapper>
             <ArchivosProviderWrapper>
-                <StrictMode>
-                    <App />
-                </StrictMode>
+                <UsuariosProviderWrapper>
+                    <StrictMode>
+                        <App />
+                    </StrictMode>
+                </UsuariosProviderWrapper>
             </ArchivosProviderWrapper>
         </LoginProviderWrapper>
     </BrowserRouter>

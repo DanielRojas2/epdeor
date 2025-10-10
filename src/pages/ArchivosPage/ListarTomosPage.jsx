@@ -206,7 +206,7 @@ export default function ListarTomosPage() {
                 </Paper>
 
                 <Paper sx={{ width: '100%', overflowX: 'auto' }}>
-                    <TableContainer sx={{ maxHeight: 220 }}>
+                    <TableContainer sx={{ height: 400, overflowY: 'auto', overfloxX: 'auto' }}>
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>
@@ -221,7 +221,7 @@ export default function ListarTomosPage() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {tomosPaginados.length > 0 ? tomosPaginados.map(tomo => <Row key={tomo.nro_tomo} row={tomo} />)
+                                {tomosPaginados.length > 0 ? tomosPaginados.map(tomo => <Row key={tomo.glosa} row={tomo} />)
                                 : <TableRow><TableCell colSpan={8} align="center">No se encontraron resultados.</TableCell></TableRow>}
                             </TableBody>
                         </Table>
@@ -283,7 +283,7 @@ export default function ListarTomosPage() {
 
                 {/* Tabla */}
                 <Paper sx={{ width: '100%', overflowX: 'auto' }}>
-                    <TableContainer sx={{ maxHeight: 300 }}>
+                    <TableContainer sx={{ height: 400, overflowY: 'auto', overfloxX: 'auto' }}>
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>
