@@ -1,8 +1,13 @@
-// components/MenuNavigation/MenuNavigation.jsx
 import { Link, Outlet } from "react-router-dom";
 import './MenuNavigation.css';
+import { useContext } from "react";
+import { LoginContext } from "../../contexts/login.context";
+import { RolContext } from "../../contexts/rol.context";
 
 function MenuNavigation() {
+    const { cerrarSesion } = useContext(LoginContext);
+    const { hasRol } = useContext(RolContext);
+
     return (
         <div className="page">
             <header tabIndex="0">EPDEOR</header>
@@ -20,8 +25,12 @@ function MenuNavigation() {
                         <li><Link to="/">Inicio</Link></li>
                         <li><Link to="/archivos">Archivos</Link></li>
                         <li><Link to="/material">Material</Link></li>
-                        <li><Link to="/usuarios">Usuarios</Link></li>
-                        <li className="small"><Link to="/iniciar-sesion">Cerrar Sesión</Link></li>
+                        {hasRol("Encargado de sistemas") && (
+                            <li><Link to="/usuarios">Usuarios</Link></li>
+                        )}
+                        <li className="small">
+                            <Link onClick={cerrarSesion} to="/iniciar-sesion">Cerrar Sesión</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

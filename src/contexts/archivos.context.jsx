@@ -28,6 +28,7 @@ function ArchivosProviderWrapper({ children }) {
             value={
                 {
                     tomos,
+                    getTomos,
                     reporteInventarioTomos
                 }
             }

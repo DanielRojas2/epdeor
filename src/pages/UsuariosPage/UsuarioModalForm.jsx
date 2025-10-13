@@ -12,31 +12,34 @@ export default function UsuarioModalForm({ open, onClose, onSuccess, usuario }) 
         apellido_paterno: "",
         apellido_materno: "",
         ci: "",
-        baja: "",
+        baja: null,
         puesto: ""
     });
 
     useEffect(() => {
-        if (usuario) {
-            setForm({
-                nombre: usuario.nombre,
-                apellido_paterno: usuario.apellido_paterno,
-                apellido_materno: usuario.apellido_materno,
-                ci: usuario.ci,
-                baja: usuario.baja || "",
-                puesto: usuario.puesto
-            });
-        } else {
-            setForm({
-                nombre: "",
-                apellido_paterno: "",
-                apellido_materno: "",
-                ci: "",
-                baja: "",
-                puesto: ""
-            });
+        if (open) {
+            if (usuario) {
+                const nroItem = usuario.puesto?.split(": ").pop() || "";
+                setForm({
+                    nombre: usuario.nombre || "",
+                    apellido_paterno: usuario.apellido_paterno || "",
+                    apellido_materno: usuario.apellido_materno || "",
+                    ci: usuario.ci || "",
+                    baja: usuario.baja || "",
+                    puesto: nroItem
+                });
+            } else {
+                setForm({
+                    nombre: "",
+                    apellido_paterno: "",
+                    apellido_materno: "",
+                    ci: "",
+                    baja: "",
+                    puesto: ""
+                });
+            }
         }
-    }, [usuario]);
+    }, [open, usuario]);
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/usuarios/puestos/")
@@ -51,22 +54,34 @@ export default function UsuarioModalForm({ open, onClose, onSuccess, usuario }) 
     };
 
     const handleSubmit = async () => {
-        const url = "http://127.0.0.1:8000/usuarios/perfiles/";
+        const userId = usuario?.id ?? usuario?.id_usuario;
+
+        const url = isEdit
+            ? `http://127.0.0.1:8000/usuarios/perfiles/${userId}/`
+            : "http://127.0.0.1:8000/usuarios/perfiles/";
+
         const method = isEdit ? "PUT" : "POST";
+
+        const payload = { ...form };
+        payload.baja = payload.baja || null;
 
         try {
             const response = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form)
+                body: JSON.stringify(payload)
             });
 
-            if (!response.ok) throw new Error("Error al guardar usuario");
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Error del servidor:", errorData);
+                throw new Error("Error al guardar usuario");
+            }
 
             onSuccess();
             onClose();
         } catch (error) {
-            console.error(error);
+            console.error("Error en handleSubmit:", error);
             alert("Ocurrió un error al guardar el usuario");
         }
     };
